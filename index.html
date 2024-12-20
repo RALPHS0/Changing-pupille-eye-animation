@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Eye</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #0064A9;
+        }
+
+        .eye {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: #fff;
+            border: 5px solid #101E28;
+            transform: rotate(45deg);
+            border-top-left-radius: 100%;
+            border-bottom-right-radius: 100%;
+            overflow: hidden;
+            cursor: pointer; /* Pointer cursor for interactivity */
+        }
+
+        .pupil {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            border-radius: 50%;
+            top: 50%; /* Center pupil vertically */
+            left: 50%; /* Center pupil horizontally */
+            transform: translate(-50%, -50%);
+            animation: animate 3s infinite alternate both; /* Animation */
+        }
+
+        @keyframes animate {
+          0% {
+              transform: translate(-50%, -25%); /* Move pupil up */
+          }
+          25% {
+              transform: translate(-50%, -50%) translateX(-15%); /* Move left */
+          }
+          50% {
+              transform: translate(-50%, -80%); /* Move down */
+          }
+          75% {
+              transform: translate(-50%, -50%) translateX(15%); /* Move right */
+          }
+          100% {
+              transform: translate(-50%, -25%); /* Move back up */
+          }
+        }
+    </style>
+</head>
+<body>
+
+<div class="eye" onclick="changePupilColor(this)">
+    <div class="pupil"></div>
+</div>
+
+<script>
+    function changePupilColor(element) {
+        const pupil = element.querySelector('.pupil');
+        const colors = ['black', 'red', 'green', 'blue', 'yellow']; // Array of colors
+        const randomColor = colors[Math.floor(Math.random() * colors.length)]; // Get a random color
+        pupil.style.backgroundColor = randomColor; // Change pupil color
+    }
+</script>
+
+</body>
+</html>
